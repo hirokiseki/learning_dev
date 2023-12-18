@@ -21,10 +21,10 @@ export class RolesGuard implements CanActivate {
                 // contextからGraphQLのctxを取得する
                 // GraphQLのforRootで「context: ({ req }) => ({ req }),」の定義が必要
                 const ctx = GqlExecutionContext.create(context);
-                const user = ctx.getContext().req;
-                console.warn(context)
+                const req = ctx.getContext().req;
+                console.warn(req)
                 // authorizationヘッダーからJWTトークンを取得する
-                const authToken = user.headers.authorization;
+                const authToken = req.headers.authorization;
                 console.warn(authToken)
                 const jwtToken = authToken.substring(authToken.indexOf(' ') + 1);
                 // JWTトークンを公開鍵で検証する

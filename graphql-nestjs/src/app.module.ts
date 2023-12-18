@@ -20,6 +20,7 @@ import { APP_GUARD } from '@nestjs/core';
 @Module({
   imports: [
     GraphQLModule.forRoot<ApolloDriverConfig>({
+      context: ({ req }) => ({ req }),
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.gql'),
       buildSchemaOptions: { dateScalarMode: 'timestamp' },
